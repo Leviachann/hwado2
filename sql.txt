@@ -1,0 +1,14 @@
+SELECT ProductID, ProductName, Price
+FROM Products
+SELECT OrderID, OrderDate, Total
+FROM Orders
+SELECT OD.OrderID, OD.ProductID, P.ProductName, OD.Quantity, OD.UnitPrice, (OD.Quantity * OD.UnitPrice) AS Subtotal
+FROM OrderDetails OD
+JOIN Products P ON OD.ProductID = P.ProductID
+WHERE OD.OrderID = @OrderID
+INSERT INTO Products (ProductName, Price)
+VALUES (@ProductName, @Price)
+UPDATE Products
+SET ProductName = @ProductName, Price = @Price
+WHERE ProductID = @ProductID
+
